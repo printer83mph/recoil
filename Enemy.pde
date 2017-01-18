@@ -52,7 +52,7 @@ class Enemy extends Player {
 }
 
 void runEnemies() {
-  if(frameCount % 120 == 0) {
+  if(frameCount % 600 == 0) {
     PVector enemyPos = PVector.random2D().mult(random(arenaSize/2-10));
     enemies.add(new Enemy(enemyPos.x,enemyPos.y));
   }

@@ -3,6 +3,7 @@ class Player {
   PVector position;
   PVector velocity;
   float size;
+  float shakeSpeed;
   
   int shootDelay;
   
@@ -10,6 +11,7 @@ class Player {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
     size = 20;
+    shakeSpeed = 4;
   }
   
   void run() {
@@ -17,19 +19,23 @@ class Player {
     velocity.mult(0.99);
     checkEdgeCollide();
     if(shootDelay == 0) {
-      camPos.set(250,250);
       if(mousePressed) {
         shoot(new PVector(mouseX-camPos.x-position.x, mouseY-camPos.y-position.y));
         shootDelay = 10;
       }
     } else {
       shootDelay--;
-      if(shootDelay % 2 == 0) {
-        float camShake = shootDelay/3;
+    }
+    if(velocity.mag() > shakeSpeed) {
+      fill(0);
+      ellipse(position.x, position.y, size + 4, size + 4);
+      killEnemies(position.x,position.y,size + 4);
+      if(frameCount % 2 == 0) {
+        float camShake = velocity.mag() - shakeSpeed + 1;
         camPos.x = random(250-camShake,250+camShake);
         camPos.y = random(250-camShake,250+camShake);
       }
-    }
+    } else {camPos.set(250,250);}
     draw();
   }
   
