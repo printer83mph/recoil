@@ -6,7 +6,7 @@ class Player {
   
   int shootDelay;
   
-  public Player(int x, int y) {
+  public Player(float x, float y) {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
     size = 20;
