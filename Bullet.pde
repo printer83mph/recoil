@@ -1,8 +1,4 @@
-import java.util.Iterator;
-
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
-
-Iterator<Bullet> bullitr = bullets.iterator();
 
 class Bullet {
   
