@@ -2,7 +2,9 @@ ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 class Enemy extends Player {
   
-  boolean loadingIn = true;
+  boolean loadingOut;
+  boolean loadingIn;
+  boolean dead;
   int startFrame;
   
   public Enemy(float x, float y) {
@@ -10,12 +12,17 @@ class Enemy extends Player {
     position = new PVector(x,y);
     velocity = new PVector(0,0);
     size = 20;
+    loadingOut = false;
+    loadingIn = true;
+    dead = false;
     startFrame = frameCount;
   }
   
   void run() {
     if(loadingIn) {
       loadIn();
+    } if(loadingOut) {
+      loadOut();
     } else {
       position.add(velocity);
       velocity.mult(0.99);
@@ -49,6 +56,18 @@ class Enemy extends Player {
     if(curSize > size-1) {loadingIn = false;}
   }
   
+  void kill() {
+    loadingOut = true;
+    startFrame = frameCount;
+  }
+  
+  void loadOut() {
+    fill(255,0,0);
+    float curSize = 20-(frameCount-startFrame);
+    ellipse(position.x, position.y, curSize, curSize);
+    if(curSize < 1) {dead = true;}
+  }
+  
 }
 
 void runEnemies() {
@@ -60,6 +79,7 @@ void runEnemies() {
   while(i > 0) {
     Enemy enemy = enemies.get(i-1);
     enemy.run();
+    if(enemy.dead) enemies.remove(enemy);
     i--;
   }
 }

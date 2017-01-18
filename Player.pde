@@ -28,10 +28,10 @@ class Player {
     }
     if(velocity.mag() > shakeSpeed) {
       fill(0);
-      ellipse(position.x, position.y, size + 4, size + 4);
-      killEnemies(position.x,position.y,size + 4);
+      float camShake = velocity.mag() - shakeSpeed + 1;
+      ellipse(position.x, position.y, size + camShake, size + camShake);
+      killEnemies(position.x,position.y,size + camShake);
       if(frameCount % 2 == 0) {
-        float camShake = velocity.mag() - shakeSpeed + 1;
         camPos.x = random(250-camShake,250+camShake);
         camPos.y = random(250-camShake,250+camShake);
       }
