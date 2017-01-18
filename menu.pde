@@ -13,7 +13,7 @@ boolean drawMenu() {
   }
   if(mousePressed && menuStage == 0) menuStage = 1;
   if(menuStage == 1 || menuStage == 2) {menuSpeed ++;menuProgress += menuSpeed;}
-  if(menuProgress > 250) {menuStage = 2;menuProgress = 0;menuSpeed = 0;}
+  if(menuProgress > 300) {menuStage = 2;menuProgress = 0;menuSpeed = 0;}
   if(menuStage == 2) {ellipse(0,0,20-10/menuSpeed,20-10/menuSpeed);}
   return menuStage == 2 && menuProgress > 19;
 }

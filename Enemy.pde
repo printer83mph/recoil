@@ -2,6 +2,7 @@ ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 class Enemy extends Player {
   
+  float fear;
   boolean loadingOut;
   boolean loadingIn;
   boolean dead;
@@ -11,6 +12,7 @@ class Enemy extends Player {
     super(round(x),round(y));
     position = new PVector(x,y);
     velocity = new PVector(0,0);
+    fear = random(150);
     size = 20;
     loadingOut = false;
     loadingIn = true;
@@ -28,7 +30,7 @@ class Enemy extends Player {
       velocity.mult(0.99);
       checkEdgeCollide();
       if(shootDelay == 0) {
-        if(dist(ply.position.x, ply.position.y, position.x, position.y) < 100) {
+        if(dist(ply.position.x, ply.position.y, position.x, position.y) < fear) {
           shoot(new PVector(ply.position.x-position.x, ply.position.y-position.y));
         } else {shoot(new PVector(ply.position.x-position.x, ply.position.y-position.y).mult(-1));}
         shootDelay = 60;
@@ -57,8 +59,10 @@ class Enemy extends Player {
   }
   
   void kill() {
-    loadingOut = true;
-    startFrame = frameCount;
+    if(!loadingOut) {
+      loadingOut = true;
+      startFrame = frameCount;
+    }
   }
   
   void loadOut() {
