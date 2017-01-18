@@ -14,7 +14,7 @@ class Bullet {
     position = new PVector(x, y);
     direction = ang;
     size = 20;
-    lifeStart = frameCount;
+    lifeStart = frameCount;;
   }
   
   void run() {
@@ -40,4 +40,16 @@ void runBullets() {
     }
     i--;
   }
+}
+
+class EnemyBullet extends Bullet {
+  
+  public EnemyBullet(float x, float y, PVector ang) {
+    super(x,y,ang);
+  }
+  
+  boolean touchingPlayer(Player plyr) {
+    return dist(plyr.position.x, plyr.position.y, position.x, position.y) < size/2 + plyr.size/2;
+  }
+  
 }
