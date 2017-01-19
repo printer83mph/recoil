@@ -23,7 +23,7 @@ class Enemy extends Player {
   void run() {
     if(loadingIn) {
       loadIn();
-    } if(loadingOut) {
+    } else if(loadingOut) {
       loadOut();
     } else {
       position.add(velocity);
