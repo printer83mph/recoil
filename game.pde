@@ -1,5 +1,5 @@
 int gameStartFrame;
-int difficulty = 1;
+int difficulty = 0;
 
 int game() {
   runBullets();

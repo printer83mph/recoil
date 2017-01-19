@@ -1,3 +1,5 @@
+int difDelay;
+
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 class Enemy extends Player {
@@ -53,7 +55,7 @@ class Enemy extends Player {
   
   void loadIn() {
     fill(255,0,0);
-    float curSize = 20-10/(frameCount-startFrame+1);
+    float curSize = (frameCount-startFrame+1);
     ellipse(position.x, position.y, curSize, curSize);
     if(curSize > size-1) {loadingIn = false;}
   }
@@ -61,6 +63,7 @@ class Enemy extends Player {
   void kill() {
     if(!loadingOut) {
       loadingOut = true;
+      loadingIn = false;
       startFrame = frameCount;
     }
   }
@@ -75,12 +78,18 @@ class Enemy extends Player {
 }
 
 void runEnemies() {
-  if((frameCount-gameStartFrame) % round(600+log(difficulty)) == 0) {
+  if(difDelay == 0) {
     difficulty ++;
+    difDelay = round(600+difficulty*60);
+  } else {
+    difDelay--;
   }
   if(enemies.size() == 0) {
     for(int i = 0; i < difficulty; i++) {
       PVector enemyPos = PVector.random2D().mult(random(arenaSize/2-10));
+      while(dist(enemyPos.x,enemyPos.y,ply.position.x,ply.position.y) < 50) {
+        enemyPos = PVector.random2D().mult(random(arenaSize/2-10));
+      }
       enemies.add(new Enemy(enemyPos.x,enemyPos.y));
     }
   }
