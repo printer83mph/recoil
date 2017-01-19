@@ -1,3 +1,6 @@
+int gameStartFrame;
+int difficulty = 1;
+
 int game() {
   runBullets();
   ply.run();

@@ -22,7 +22,7 @@ void draw() {
   fill(bg);
   ellipse(0, 0, arenaSize, arenaSize);
   if(gameState == 0) if(drawMenu()) gameState = -1;
-  if(gameState == -1) {ply = new Player(0,0); gameState = 1;};
+  if(gameState == -1) {ply = new Player(0,0); gameState = 1;gameStartFrame = frameCount;}
   if(gameState == 1) {
     int score = game();
     if(score != 0) {
