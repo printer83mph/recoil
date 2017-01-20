@@ -35,7 +35,7 @@ class Enemy extends Player {
         if(dist(ply.position.x, ply.position.y, position.x, position.y) < fear) {
           shoot(new PVector(ply.position.x-position.x, ply.position.y-position.y));
         } else {shoot(new PVector(ply.position.x-position.x, ply.position.y-position.y).mult(-1));}
-      shootDelay = 60;
+        shootDelay = 60-difficulty;
       } else {
         shootDelay--;
       }
