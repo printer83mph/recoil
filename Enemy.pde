@@ -97,7 +97,7 @@ void runEnemies() {
   if(enemies.size() == 0) {
     for(int i = 0; i < difficulty; i++) {
       PVector enemyPos = PVector.random2D().mult(random(arenaSize/2-10));
-      while(dist(enemyPos.x,enemyPos.y,ply.position.x,ply.position.y) < 50) {
+      while(dist(enemyPos.x,enemyPos.y,ply.position.x,ply.position.y) < arenaSize/4) {
         enemyPos = PVector.random2D().mult(random(arenaSize/2-10));
       }
       enemies.add(new Enemy(enemyPos.x,enemyPos.y));

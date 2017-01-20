@@ -19,7 +19,7 @@ class Bullet {
   
   void run() {
     position.add(direction);
-    killEnemies(position.x,position.y,curSize,false);
+    killEnemies(position.x,position.y,curSize);
     draw();
   }
   

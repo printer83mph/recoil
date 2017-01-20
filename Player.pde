@@ -34,9 +34,9 @@ class Player {
     }
     if(velocity.mag() > shakeSpeed) {
       fill(0);
-      float camShake = velocity.mag() - shakeSpeed + 1;
+      float camShake = (velocity.mag() - shakeSpeed)*2;
       ellipse(position.x, position.y, size + camShake, size + camShake);
-      killEnemies(position.x,position.y,size + camShake,true);
+      killEnemies(position.x,position.y,size + camShake);
       if(frameCount % 2 == 0) {
         camPos.x = random(250-camShake,250+camShake);
         camPos.y = random(250-camShake,250+camShake);
@@ -65,8 +65,13 @@ class Player {
   void damage() {
     if(invulDelay == 0 && !(velocity.mag()>shakeSpeed)) {
       hp--;
-      drawNum(hp);
-      invulDelay = 60;
+      if(hp == 0) {
+        gameState = 2;
+        deathAnimProg = 0;
+      } else {
+        drawNum(hp);
+        invulDelay = 60;
+      }
     }
   }
   

@@ -6,7 +6,7 @@ int comboDelay = 0;
 int scoreSize = 100;
 int comboSize = 100;
 
-int game() {
+void game() {
   runBullets();
   ply.run();
   runEnemies();
@@ -16,10 +16,9 @@ int game() {
   if(comboDelay == 0 && multiplier != 0) {multiplier = floor(multiplier/2);comboDelay = 300;comboSize += 20;}
   else comboDelay--;
   if((frameCount-gameStartFrame) % 60 == 0) {score += multiplier; scoreSize += min(multiplier*10,30);}
-  return 0;
 }
 
-void killEnemies(float x, float y, float size, boolean chargeKill) {
+void killEnemies(float x, float y, float size) {
   int i = enemies.size();
   while(i > 0) {
     Enemy enemy = enemies.get(i-1);
@@ -44,4 +43,20 @@ void drawMult() {
   textSize(comboSize/digLen);
   text("x" + multiplier,200,-200);
   if(comboSize > 100) comboSize --;
+}
+
+void resetGame() {
+  enemies.clear();
+  gameState = -1;
+  menuStage = 0;
+  menuSpeed = 0;
+  menuProgress = 0;
+  difficulty = 1;
+  score = 0;
+  multiplier = 0;
+  numProgress = 60;
+  restarting = false;
+  restartTimer = 0;
+  scoreSize += 20;
+  comboSize += 20;
 }

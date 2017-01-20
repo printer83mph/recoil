@@ -3,6 +3,8 @@ void setup() {
   noStroke();
 }
 
+int deathAnimProg;
+
 final color fg = color(40, 90, 150);
 final color bg = color(240, 240, 240);
 final color enemyCol = color(150, 90, 40);
@@ -22,12 +24,13 @@ void draw() {
   fill(bg);
   ellipse(0, 0, arenaSize, arenaSize);
   if(gameState == 0) if(drawMenu()) gameState = -1;
-  if(gameState == -1) {ply = new Player(0,0); gameState = 1;gameStartFrame = frameCount-1;drawNum(3);}
+  if(gameState == -1) {ply = new Player(0,0); gameState = 1;gameStartFrame = frameCount-1;}
   if(gameState == 1) {
-    int score = game();
-    if(score != 0) {
-      
-    }
+    game();
+  }
+  if(gameState == 2) {
+    killPlayer();
+    drawScore();
   }
   
   popMatrix();
