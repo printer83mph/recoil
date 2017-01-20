@@ -35,9 +35,12 @@ class Enemy extends Player {
         if(dist(ply.position.x, ply.position.y, position.x, position.y) < fear) {
           shoot(new PVector(ply.position.x-position.x, ply.position.y-position.y));
         } else {shoot(new PVector(ply.position.x-position.x, ply.position.y-position.y).mult(-1));}
-        shootDelay = 60;
+      shootDelay = 60;
       } else {
         shootDelay--;
+      }
+      if(touchingPlayer()) {
+        ply.damage();
       }
       draw();
     }
@@ -65,6 +68,9 @@ class Enemy extends Player {
       loadingOut = true;
       loadingIn = false;
       startFrame = frameCount;
+      comboDelay = 300;
+      comboSize += 20;
+      multiplier++;
     }
   }
   
@@ -73,6 +79,10 @@ class Enemy extends Player {
     float curSize = 20-(frameCount-startFrame);
     ellipse(position.x, position.y, curSize, curSize);
     if(curSize < 1) {dead = true;}
+  }
+  
+  boolean touchingPlayer() {
+    return dist(ply.position.x, ply.position.y, position.x, position.y) < size/2 + ply.size/2;
   }
   
 }

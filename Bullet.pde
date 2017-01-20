@@ -19,7 +19,7 @@ class Bullet {
   
   void run() {
     position.add(direction);
-    killEnemies(position.x,position.y,curSize);
+    killEnemies(position.x,position.y,curSize,false);
     draw();
   }
   
@@ -51,11 +51,14 @@ class EnemyBullet extends Bullet {
   
   void run() {
     position.add(direction);
+    if(touchingPlayer()) {
+      ply.damage();
+    }
     draw();
   }
   
-  boolean touchingPlayer(Player plyr) {
-    return dist(plyr.position.x, plyr.position.y, position.x, position.y) < size/2 + plyr.size/2;
+  boolean touchingPlayer() {
+    return dist(ply.position.x, ply.position.y, position.x, position.y) < size/2 + ply.size/2;
   }
   
 }
