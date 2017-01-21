@@ -70,6 +70,7 @@ class Player {
         deathAnimProg = 0;
       } else {
         drawNum(hp);
+        hpSize += 20;
         invulDelay = 60;
       }
     }

@@ -5,6 +5,7 @@ int multiplier = 0;
 int comboDelay = 0;
 int scoreSize = 100;
 int comboSize = 100;
+int hpSize = 120;
 
 void game() {
   runBullets();
@@ -13,6 +14,7 @@ void game() {
   drawScore();
   drawMult();
   runNumDisplay();
+  drawHp();
   if(comboDelay == 0 && multiplier != 0) {multiplier = floor(multiplier/2);comboDelay = 300;comboSize += 20;}
   else comboDelay--;
   if((frameCount-gameStartFrame) % 60 == 0) {score += multiplier; scoreSize += min(multiplier*10,30);}
@@ -45,8 +47,17 @@ void drawMult() {
   if(comboSize > 100) comboSize --;
 }
 
+void drawHp() {
+  fill(bg);
+  int digLen = String.valueOf(curString).length()+1;
+  textSize(hpSize/digLen);
+  text(curString,-200,200);
+  if(hpSize > 120) hpSize --;
+}
+
 void resetGame() {
   enemies.clear();
+  bullets.clear();
   gameState = -1;
   menuStage = 0;
   menuSpeed = 0;
@@ -59,4 +70,5 @@ void resetGame() {
   restartTimer = 0;
   scoreSize += 20;
   comboSize += 20;
+  hpSize += 20;
 }
