@@ -43,7 +43,7 @@ void drawMult() {
   fill(bg);
   int digLen = String.valueOf(multiplier).length()+1;
   textSize(comboSize/digLen);
-  text("x" + multiplier,200,-200);
+  text("+" + multiplier,200,-200);
   if(comboSize > 100) comboSize --;
 }
 
