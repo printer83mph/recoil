@@ -12,7 +12,7 @@ void runNumDisplay() {
     fill(fg,(60-numProgress)/60*255);
     text(curNum,0,-20);
     float camShake = (60-numProgress)/12;
-    camPos.set(random(250-camShake,250+camShake),random(250-camShake,250+camShake));
+    camPos.set(random(500-camShake,500+camShake),random(500-camShake,500+camShake));
     numProgress++;
   }
 }

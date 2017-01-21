@@ -1,5 +1,5 @@
 void setup() {
-  size(500,500);
+  size(1000,1000);
   noStroke();
 }
 
@@ -12,7 +12,7 @@ final int arenaSize = 400;
 
 Player ply;
 
-PVector camPos = new PVector(250, 250);
+PVector camPos = new PVector(500, 500);
 
 int gameState = 0;
 
