@@ -38,10 +38,10 @@ class Player {
       ellipse(position.x, position.y, size + camShake, size + camShake);
       killEnemies(position.x,position.y,size + camShake);
       if(frameCount % 2 == 0) {
-        camPos.x = random(500-camShake,500+camShake);
-        camPos.y = random(500-camShake,500+camShake);
+        camPos.x = random(defaultCamPos.x-camShake,defaultCamPos.x+camShake);
+        camPos.y = random(defaultCamPos.y-camShake,defaultCamPos.y+camShake);
       }
-    } else {camPos.set(500,500);}
+    } else {camPos.set(defaultCamPos);}
     draw();
   }
   

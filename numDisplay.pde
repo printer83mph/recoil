@@ -17,7 +17,7 @@ void runNumDisplay() {
     fill(fg,(60-numProgress)/60*255);
     text(curString,0,-20);
     float camShake = (60-numProgress)/12;
-    camPos.set(random(500-camShake,500+camShake),random(500-camShake,500+camShake));
+    camPos.set(random(defaultCamPos.x-camShake,defaultCamPos.x+camShake),random(defaultCamPos.y-camShake,defaultCamPos.y+camShake));
     numProgress++;
   }
 }

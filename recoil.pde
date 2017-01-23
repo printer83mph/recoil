@@ -1,6 +1,8 @@
 void setup() {
-  size(1000,1000);
+  fullScreen();
   noStroke();
+  defaultCamPos = new PVector(width/2,height/2);
+  camPos = new PVector(width/2,height/2);
 }
 
 int deathAnimProg;
@@ -12,7 +14,8 @@ final int arenaSize = 400;
 
 Player ply;
 
-PVector camPos = new PVector(500, 500);
+PVector defaultCamPos;
+PVector camPos;
 
 int gameState = 0;
 
