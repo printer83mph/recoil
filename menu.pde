@@ -26,11 +26,11 @@ void killPlayer() {
   if(pow(deathAnimProg,2) < arenaSize*3) {
     deathAnimProg ++;
     fill(bg);
-    textSize(100);
+    textSize(arenaSize/4);
     text("GAME\nOVER",0,0);
   } else {
     fill(bg);
-    textSize(100);
+    textSize(arenaSize/4);
     text("GAME\nOVER",0,pow(restartTimer,2));
     if(mousePressed) {restarting = true;}
     if(restarting) {restartTimer++;}

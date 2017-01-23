@@ -14,7 +14,7 @@ class Enemy extends Player {
     super(round(x),round(y));
     position = new PVector(x,y);
     velocity = new PVector(0,0);
-    fear = random(150);
+    fear = random(arenaSize/3);
     size = arenaSize/20;
     loadingOut = false;
     loadingIn = true;
@@ -58,7 +58,7 @@ class Enemy extends Player {
   
   void loadIn() {
     fill(255,0,0);
-    float curSize = (frameCount-startFrame+1);
+    float curSize = (frameCount-startFrame)*arenaSize/500;
     ellipse(position.x, position.y, curSize, curSize);
     if(curSize > size-1) {loadingIn = false;}
   }
@@ -76,7 +76,7 @@ class Enemy extends Player {
   
   void loadOut() {
     fill(255,0,0);
-    float curSize = size-(frameCount-startFrame);
+    float curSize = size-(frameCount-startFrame)*arenaSize/500;
     ellipse(position.x, position.y, curSize, curSize);
     if(curSize < 1) {dead = true;}
   }
