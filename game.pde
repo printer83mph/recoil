@@ -3,9 +3,10 @@ int difficulty = 0;
 int score = 0;
 int multiplier = 0;
 int comboDelay = 0;
-int scoreSize = 100;
-int comboSize = 100;
-int hpSize = 120;
+float scoreSize;
+float comboSize;
+float hpSize;
+float scorePos;
 
 void game() {
   runBullets();
@@ -15,9 +16,9 @@ void game() {
   drawMult();
   runNumDisplay();
   drawHp();
-  if(comboDelay == 0 && multiplier != 0) {multiplier = floor(multiplier/2);comboDelay = 300;comboSize += 20;}
+  if(comboDelay == 0 && multiplier != 0) {multiplier = floor(multiplier/2);comboDelay = 300;comboSize += arenaSize/20;}
   else comboDelay--;
-  if((frameCount-gameStartFrame) % 60 == 0) {score += multiplier; scoreSize += min(multiplier*10,30);}
+  if((frameCount-gameStartFrame) % 60 == 0) {score += multiplier; scoreSize += min(multiplier*arenaSize/40,arenaSize/15);}
 }
 
 void killEnemies(float x, float y, float size) {
@@ -35,24 +36,24 @@ void drawScore() {
   fill(bg);
   int digLen = String.valueOf(score).length();
   textSize(scoreSize/digLen);
-  text(score,-200,-200);
-  if(scoreSize > 100) scoreSize --;
+  text(score,-scorePos,-scorePos);
+  if(scoreSize > arenaSize/5) scoreSize -= arenaSize/600;
 }
 
 void drawMult() {
   fill(bg);
   int digLen = String.valueOf(multiplier).length()+1;
   textSize(comboSize/digLen);
-  text("+" + multiplier,200,-200);
-  if(comboSize > 100) comboSize --;
+  text("+" + multiplier,scorePos,-scorePos);
+  if(comboSize > arenaSize/5) comboSize -= arenaSize/600;
 }
 
 void drawHp() {
   fill(bg);
   int digLen = String.valueOf(curString).length()+1;
   textSize(hpSize/digLen);
-  text(curString,-200,200);
-  if(hpSize > 120) hpSize --;
+  text(curString,-scorePos,scorePos);
+  if(hpSize > arenaSize/4) hpSize -=arenaSize/600;
 }
 
 void resetGame() {
@@ -68,7 +69,7 @@ void resetGame() {
   numProgress = 60;
   restarting = false;
   restartTimer = 0;
-  scoreSize += 20;
-  comboSize += 20;
-  hpSize += 20;
+  scoreSize += arenaSize/20;
+  comboSize += arenaSize/20;
+  hpSize += arenaSize/20;
 }

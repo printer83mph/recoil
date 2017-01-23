@@ -3,6 +3,11 @@ void setup() {
   noStroke();
   defaultCamPos = new PVector(width/2,height/2);
   camPos = new PVector(width/2,height/2);
+  arenaSize = min(width,height)*0.7;
+  scorePos = arenaSize/2;
+  scoreSize = arenaSize/5;
+  comboSize = arenaSize/5;
+  hpSize = arenaSize/4;
 }
 
 int deathAnimProg;
@@ -10,7 +15,7 @@ int deathAnimProg;
 final color fg = color(40, 90, 150);
 final color bg = color(240, 240, 240);
 final color enemyCol = color(150, 90, 40);
-final int arenaSize = 400;
+float arenaSize;
 
 Player ply;
 

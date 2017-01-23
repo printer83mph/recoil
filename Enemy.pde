@@ -15,7 +15,7 @@ class Enemy extends Player {
     position = new PVector(x,y);
     velocity = new PVector(0,0);
     fear = random(150);
-    size = 20;
+    size = arenaSize/20;
     loadingOut = false;
     loadingIn = true;
     dead = false;
@@ -52,7 +52,7 @@ class Enemy extends Player {
   }
   
   void shoot(PVector aim) {
-    velocity.add(aim.normalize().mult(-1));
+    velocity.add(aim.normalize().mult(-arenaSize/600));
     bullets.add(new EnemyBullet(position.x,position.y,aim.mult(-3).add(velocity)));
   }
   
@@ -69,14 +69,14 @@ class Enemy extends Player {
       loadingIn = false;
       startFrame = frameCount;
       comboDelay = 300;
-      comboSize += 20;
+      comboSize += arenaSize/20;
       multiplier++;
     }
   }
   
   void loadOut() {
     fill(255,0,0);
-    float curSize = 20-(frameCount-startFrame);
+    float curSize = size-(frameCount-startFrame);
     ellipse(position.x, position.y, curSize, curSize);
     if(curSize < 1) {dead = true;}
   }

@@ -12,8 +12,8 @@ class Player {
   public Player(float x, float y) {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
-    size = 20;
-    shakeSpeed = 4;
+    size = arenaSize/20;
+    shakeSpeed = arenaSize/150;
     hp = 3;
   }
   
@@ -34,7 +34,7 @@ class Player {
     }
     if(velocity.mag() > shakeSpeed) {
       fill(0);
-      float camShake = (velocity.mag() - shakeSpeed)*2;
+      float camShake = (velocity.mag() - shakeSpeed)*(arenaSize/500);
       ellipse(position.x, position.y, size + camShake, size + camShake);
       killEnemies(position.x,position.y,size + camShake);
       if(frameCount % 2 == 0) {
@@ -58,8 +58,8 @@ class Player {
   }
   
   void shoot(PVector aim) {
-    velocity.add(aim.normalize().mult(-1));
-    bullets.add(new Bullet(position.x,position.y,aim.mult(-3).add(velocity)));
+    velocity.add(aim.normalize().mult(-arenaSize/600));
+    bullets.add(new Bullet(position.x,position.y,aim.mult(-arenaSize/200).add(velocity)));
   }
   
   void damage() {

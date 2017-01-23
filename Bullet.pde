@@ -13,8 +13,8 @@ class Bullet {
   public Bullet(float x, float y, PVector ang) {
     position = new PVector(x, y);
     direction = ang;
-    size = 20;
-    lifeStart = frameCount;;
+    size = arenaSize/20;
+    lifeStart = frameCount;
   }
   
   void run() {

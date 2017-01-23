@@ -7,17 +7,17 @@ boolean restarting = false;
 boolean drawMenu() {
   fill(fg);
   if(menuStage == 1 || menuStage == 0) {
-    textSize(20);
+    textSize(arenaSize/10);
     textAlign(CENTER, CENTER);
-    text("recoil", 0, menuProgress - 10);
-    textSize(10);
-    text("click to start/shoot", 0, menuProgress + 10);
+    text("recoil", 0, menuProgress - arenaSize/30);
+    textSize(arenaSize/20);
+    text("click to start/shoot", 0, menuProgress + arenaSize/30);
   }
   if(mousePressed && menuStage == 0) menuStage = 1;
-  if(menuStage == 1 || menuStage == 2) {menuSpeed ++;menuProgress += menuSpeed;}
-  if(menuProgress > 300) {menuStage = 2;menuProgress = 0;menuSpeed = 0;}
-  if(menuStage == 2) {ellipse(0,0,20-10/menuSpeed,20-10/menuSpeed);}
-  return menuStage == 2 && menuProgress > 19;
+  if(menuStage == 1 || menuStage == 2) {menuSpeed += arenaSize/500;menuProgress += menuSpeed;}
+  if(menuProgress > arenaSize) {menuStage = 2;menuProgress = 0;menuSpeed = 0;}
+  if(menuStage == 2) {ellipse(0,0,arenaSize/20-10/menuSpeed,arenaSize/20-10/menuSpeed);}
+  return menuStage == 2 && menuProgress > arenaSize/20;
 }
 
 void killPlayer() {
