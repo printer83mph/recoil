@@ -71,6 +71,7 @@ class Enemy extends Player {
       comboDelay = 300;
       comboSize += arenaSize/20;
       multiplier++;
+      doExtraLife();
     }
   }
   
@@ -88,12 +89,6 @@ class Enemy extends Player {
 }
 
 void runEnemies() {
-  if(difDelay == 0) {
-    difficulty ++;
-    difDelay = round(600+difficulty*60);
-  } else {
-    difDelay--;
-  }
   if(enemies.size() == 0) {
     for(int i = 0; i < difficulty; i++) {
       PVector enemyPos = PVector.random2D().mult(random(arenaSize/2-10));
@@ -102,6 +97,7 @@ void runEnemies() {
       }
       enemies.add(new Enemy(enemyPos.x,enemyPos.y));
     }
+    difficulty ++;
   }
   int i = enemies.size();
   while(i > 0) {

@@ -7,6 +7,7 @@ float scoreSize;
 float comboSize;
 float hpSize;
 float scorePos;
+int extraLifeGoal = 15;
 
 void game() {
   runBullets();
@@ -16,9 +17,23 @@ void game() {
   drawMult();
   runNumDisplay();
   drawHp();
-  if(comboDelay == 0 && multiplier != 0) {multiplier = floor(multiplier/2);comboDelay = 300;comboSize += arenaSize/20;}
+  if(comboDelay == 0 && multiplier != 0) {multiplier = floor(multiplier/2);comboDelay = 300;comboSize += arenaSize/20;doExtraLife();}
   else comboDelay--;
-  if((frameCount-gameStartFrame) % 60 == 0) {score += multiplier; scoreSize += min(multiplier*arenaSize/40,arenaSize/15);}
+  if((frameCount-gameStartFrame) % 60 == 0) {
+    score += multiplier;
+    scoreSize += min(multiplier*arenaSize/40,arenaSize/15);
+  }
+}
+
+void doExtraLife() {
+  if(multiplier >= extraLifeGoal) {
+    ply.hp ++;
+    drawNum(ply.hp);
+    extraLifeGoal+= 15;
+  }
+  if(multiplier < extraLifeGoal - 15) {
+    extraLifeGoal -= 15;
+  }
 }
 
 void killEnemies(float x, float y, float size) {
@@ -72,4 +87,5 @@ void resetGame() {
   scoreSize += arenaSize/20;
   comboSize += arenaSize/20;
   hpSize += arenaSize/20;
+  extraLifeGoal = 15;
 }

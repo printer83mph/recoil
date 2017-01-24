@@ -4,11 +4,8 @@ String curString;
 
 void drawNum(int num) {
   curNum = num;
+  curString = "x" + num;
   numProgress = 0;
-  curString = "";
-  for(int i = 0; i < curNum; i++) {
-    curString += "♥";
-  }
 }
 
 void runNumDisplay() {
